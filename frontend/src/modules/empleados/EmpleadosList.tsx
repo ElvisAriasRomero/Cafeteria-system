@@ -87,20 +87,8 @@ function EmpleadosList() {
   const obtenerTurno = (id: number) =>
     turnos.find((x) => x.id_turno === id)?.descripcion || "Sin turno";
 
-  const obtenerEstadoCivil = (id: number) =>
-    estadosCiviles.find((x) => x.id_estado_civil === id)?.descripcion ||
-    "Sin estado civil";
-
-  const obtenerNacionalidad = (id: number) =>
-    nacionalidades.find((x) => x.id_nacionalidad === id)?.descripcion ||
-    "Sin nacionalidad";
-
   const obtenerEstado = (id: number) =>
     estados.find((x) => x.id_estado === id)?.descripcion || "Sin estado";
-
-  const obtenerTipoContacto = (id: number) =>
-    tiposContacto.find((x) => x.id_tipo_contacto === id)?.descripcion ||
-    "Sin tipo";
 
   const obtenerSalario = (id: number) => {
     const salario = salarios.find((x) => x.id_salario === id);
@@ -123,6 +111,7 @@ function EmpleadosList() {
 
   const abrirEditar = (empleado: Empleado) => {
     setEditando(empleado);
+
     setForm({
       nombre_empleado: empleado.nombre_empleado,
       ci: empleado.ci || "",
@@ -140,6 +129,7 @@ function EmpleadosList() {
       id_tipo_contacto: empleado.id_tipo_contacto,
       id_salario: empleado.id_salario,
     });
+
     setModalOpen(true);
   };
 
@@ -160,6 +150,7 @@ function EmpleadosList() {
 
   const eliminar = async (id: number) => {
     if (!window.confirm("¿Seguro que deseas eliminar este empleado?")) return;
+
     await eliminarEmpleado(id);
     await cargarEmpleados();
   };
